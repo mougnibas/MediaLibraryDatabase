@@ -1,0 +1,37 @@
+<!-- Copyright © 2019 Yoann MOUGNIBAS                                               -->
+<!--                                                                                -->
+<!-- This file is part of MediaLibraryDatabase.                                     -->
+<!--                                                                                -->
+<!-- MediaLibraryDatabase is free software: you can redistribute it and/or modify   -->
+<!-- it under the terms of the GNU General Public License as published by           -->
+<!-- the Free Software Foundation, either version 3 of the License, or              -->
+<!-- (at your option) any later version.                                            -->
+<!--                                                                                -->
+<!-- MediaLibraryDatabase is distributed in the hope that it will be useful,        -->
+<!-- but WITHOUT ANY WARRANTY; without even the implied warranty of                 -->
+<!-- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                  -->
+<!-- GNU General Public License for more details.                                   -->
+<!--                                                                                -->
+<!-- You should have received a copy of the GNU General Public License              -->
+<!-- along with MediaLibraryDatabase.  If not, see <https://www.gnu.org/licenses/>. -->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>core_test</RootNamespace>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+    <PackageReference Include="coverlet.collector" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\main\core\core.csproj" />
+  </ItemGroup>
+
+</Project>
