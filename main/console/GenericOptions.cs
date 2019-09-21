@@ -27,10 +27,7 @@ namespace fr.mougnibas.medialibrarydatabase.console
         /// <summary>
         /// Verbose mode.
         /// </summary>
-        [Option(
-            'v', "verbose",
-            Default = false,
-            HelpText = "Enable verbose mode")]
+        [Option('v', "verbose", Default = false, HelpText = "Enable verbose mode")]
         public bool Verbose { get; set; }
 
         /// <summary>

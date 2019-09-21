@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with MediaLibraryDatabase.  If not, see <https://www.gnu.org/licenses/>.
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace fr.mougnibas.medialibrarydatabase.core.test
 {
@@ -29,12 +29,14 @@ namespace fr.mougnibas.medialibrarydatabase.core.test
         /// <summary>
         /// Movie class instance to test.
         /// </summary>
-        readonly Movie _movie;
+        private Movie _movie;
 
         /// <summary>
         /// Initialize the movie.
+        /// This method will run before each TestMethod.
         /// </summary>
-        public MovieUnitTest()
+        [TestInitialize]
+        public void SetUp()
         {
             // Instantiate a movie to test
             _movie = new Movie(
@@ -120,6 +122,15 @@ namespace fr.mougnibas.medialibrarydatabase.core.test
                 string actual = ex.Message;
                 Assert.AreEqual(expected, actual);
             }
+        }
+
+
+        [TestMethod]
+        public void TestId()
+        {
+            string expected = "J8UqrLO2vKgGg5SgHAAYl6L/yDCbxewBJ7hqQt4dJrIj18S62tHo5qKKkpYJL3hfuFvcYPrgdNZj6QAiDLnd7Q==";
+            string actual = _movie.Id;
+            Assert.AreEqual(expected, actual);
         }
 
         [TestMethod]

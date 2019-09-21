@@ -15,8 +15,9 @@
 // You should have received a copy of the GNU General Public License
 // along with MediaLibraryDatabase.  If not, see <https://www.gnu.org/licenses/>.
 
-using CommandLine;
 using System.Collections.Generic;
+
+using CommandLine;
 
 namespace fr.mougnibas.medialibrarydatabase.console
 {

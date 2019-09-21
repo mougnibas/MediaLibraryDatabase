@@ -15,9 +15,11 @@
 // You should have received a copy of the GNU General Public License
 // along with MediaLibraryDatabase.  If not, see <https://www.gnu.org/licenses/>.
 
-using CommandLine;
-using fr.mougnibas.medialibrarydatabase.core;
 using System;
+
+using fr.mougnibas.medialibrarydatabase.core;
+
+using CommandLine;
 
 namespace fr.mougnibas.medialibrarydatabase.console
 {
