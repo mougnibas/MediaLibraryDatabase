@@ -77,6 +77,12 @@ namespace fr.mougnibas.medialibrarydatabase.core.test
                     @"D:\repo\Something2.stuff",
                     "2020-12-31")
             );
+
+            // Add some media sources
+            service.Add(new MediaSource("Kids movies", @"Z:\Movies\Kids", MediaSource.SourceType.MOVIE));
+            service.Add(new MediaSource("Parents movies", @"Z:\Movies\Parents", MediaSource.SourceType.MOVIE));
+            service.Add(new MediaSource("Kids tv shows", @"Z:\TVShows\Kids", MediaSource.SourceType.TV_SHOW));
+            service.Add(new MediaSource("Parents tv shows", @"Z:\TVShows\Parents", MediaSource.SourceType.TV_SHOW));
         }
 
         /// <summary>
@@ -134,6 +140,78 @@ namespace fr.mougnibas.medialibrarydatabase.core.test
         public void TestFoundNothing()
         {
             Assert.IsNull(_toTest.GetMovie("Something"));
+        }
+
+        [TestMethod]
+        public void TestMediaSourcesCount()
+        {
+            int expected = 4;
+            int actual = _toTest.GetMediaSources().Length;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestMediaSourcesKidsMoviesByArray()
+        {
+            string expected = "Kids movies";
+            string actual = _toTest.GetMediaSources()[0].Name;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestMediaSourcesKidsTvShowByArray()
+        {
+            string expected = "Kids tv shows";
+            string actual = _toTest.GetMediaSources()[1].Name;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestMediaSourcesParentsMoviesByArray()
+        {
+            string expected = "Parents movies";
+            string actual = _toTest.GetMediaSources()[2].Name;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestMediaSourcesParentsTvShowByArray()
+        {
+            string expected = "Parents tv shows";
+            string actual = _toTest.GetMediaSources()[3].Name;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestMediaSourcesKidsMoviesByName()
+        {
+            string expected = "Kids movies";
+            string actual = _toTest.GetMediaSource("Kids movies").Name;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestMediaSourcesKidsTvShowByName()
+        {
+            string expected = "Kids tv shows";
+            string actual = _toTest.GetMediaSource("Kids tv shows").Name;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestMediaSourcesParentsMoviesByName()
+        {
+            string expected = "Parents movies";
+            string actual = _toTest.GetMediaSource("Parents movies").Name;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestMediaSourcesParentsTvShowByName()
+        {
+            string expected = "Parents tv shows";
+            string actual = _toTest.GetMediaSource("Parents tv shows").Name;
+            Assert.AreEqual(expected, actual);
         }
     }
 }

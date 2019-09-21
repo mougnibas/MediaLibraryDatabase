@@ -59,6 +59,16 @@ namespace fr.mougnibas.medialibrarydatabase.core
         }
 
         /// <summary>
+        /// Add a media source.
+        /// </summary>
+        /// <param name="mediaSource">Media source to add</param>
+        public void Add(MediaSource mediaSource)
+        {
+            _context.MediaSources.Add(mediaSource);
+            _context.SaveChanges();
+        }
+
+        /// <summary>
         /// Try to find movies by name.
         /// </summary>
         /// <param name="name">Name of movies</param>
@@ -79,6 +89,27 @@ namespace fr.mougnibas.medialibrarydatabase.core
         public Movie GetMovie(string name)
         {
             return _context.Movies
+               .Where(m => m.Name.Equals(name))
+               .FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Get all media sources.
+        /// </summary>
+        /// <returns>All media sources, ordered by name</returns>
+        public MediaSource[] GetMediaSources()
+        {
+            return _context.MediaSources.OrderBy(s => s.Name).ToArray();
+        }
+
+        /// <summary>
+        /// Get a media source.
+        /// </summary>
+        /// <param name="name">Media source name</param>
+        /// <returns>A media source, if any</returns>
+        public MediaSource GetMediaSource(string name)
+        {
+            return _context.MediaSources
                .Where(m => m.Name.Equals(name))
                .FirstOrDefault();
         }

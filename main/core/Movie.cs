@@ -98,7 +98,7 @@ namespace fr.mougnibas.medialibrarydatabase.core
             Id = Convert.ToBase64String(unicodeChecksumIdBytes);
         }
 
-        [Obsolete("This constructor is only intented for Entity Framework Core framework")]
+        [Obsolete("This constructor is only intented for Entity Framework Core")]
         public Movie() { }
 
         public override string ToString()

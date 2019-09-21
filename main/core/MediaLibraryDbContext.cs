@@ -31,6 +31,11 @@ namespace fr.mougnibas.medialibrarydatabase.core
         public DbSet<Movie> Movies { get; set; }
 
         /// <summary>
+        /// Media sources.
+        /// </summary>
+        public DbSet<MediaSource> MediaSources { get; set; }
+
+        /// <summary>
         /// Default no-arg constructor.
         /// </summary>
         public MediaLibraryDbContext()

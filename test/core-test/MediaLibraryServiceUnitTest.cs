@@ -133,5 +133,35 @@ namespace fr.mougnibas.medialibrarydatabase.core.test
         {
             Assert.IsNull(_toTest.GetMovie("Something"));
         }
+
+        [TestMethod]
+        public void TestMediaSourceName()
+        {
+            _toTest.Add(new MediaSource("Kids movies", @"Z:\Movies\Kids", MediaSource.SourceType.MOVIE));
+
+            string expected = "Kids movies";
+            string actual = _toTest.GetMediaSources()[0].Name;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestMediaSourcePath()
+        {
+            _toTest.Add(new MediaSource("Kids movies", @"Z:\Movies\Kids", MediaSource.SourceType.MOVIE));
+
+            string expected = @"Z:\Movies\Kids";
+            string actual = _toTest.GetMediaSources()[0].Path;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void TestMediaSourceType()
+        {
+            _toTest.Add(new MediaSource("Kids movies", @"Z:\Movies\Kids", MediaSource.SourceType.MOVIE));
+
+            MediaSource.SourceType expected = MediaSource.SourceType.MOVIE;
+            MediaSource.SourceType actual = _toTest.GetMediaSources()[0].Type;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
