@@ -16,10 +16,8 @@
 // along with MediaLibraryDatabase.  If not, see <https://www.gnu.org/licenses/>.
 
 using System;
-
-using fr.mougnibas.medialibrarydatabase.core;
-
 using CommandLine;
+using fr.mougnibas.medialibrarydatabase.core.model;
 
 namespace fr.mougnibas.medialibrarydatabase.console
 {

@@ -17,8 +17,10 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using fr.mougnibas.medialibrarydatabase.core.database;
+using fr.mougnibas.medialibrarydatabase.core.model;
 
-namespace fr.mougnibas.medialibrarydatabase.core
+namespace fr.mougnibas.medialibrarydatabase.core.service
 {
     /// <summary>
     /// Media library Database service.

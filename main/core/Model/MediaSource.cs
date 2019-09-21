@@ -21,7 +21,7 @@ using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace fr.mougnibas.medialibrarydatabase.core
+namespace fr.mougnibas.medialibrarydatabase.core.model
 {
     /// <summary>
     /// An abstraction of a media source.

@@ -16,8 +16,9 @@
 // along with MediaLibraryDatabase.  If not, see <https://www.gnu.org/licenses/>.
 
 using Microsoft.EntityFrameworkCore;
+using fr.mougnibas.medialibrarydatabase.core.model;
 
-namespace fr.mougnibas.medialibrarydatabase.core
+namespace fr.mougnibas.medialibrarydatabase.core.database
 {
     /// <summary>
     /// A database abstraction, with media.

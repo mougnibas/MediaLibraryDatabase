@@ -18,6 +18,9 @@
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using fr.mougnibas.medialibrarydatabase.core.database;
+using fr.mougnibas.medialibrarydatabase.core.model;
+using fr.mougnibas.medialibrarydatabase.core.service;
 
 namespace fr.mougnibas.medialibrarydatabase.core.test
 {
