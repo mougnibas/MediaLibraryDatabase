@@ -15,8 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with MediaLibraryDatabase.  If not, see <https://www.gnu.org/licenses/>.
 
-using Microsoft.EntityFrameworkCore;
 using fr.mougnibas.medialibrarydatabase.core.model;
+using Microsoft.EntityFrameworkCore;
 
 namespace fr.mougnibas.medialibrarydatabase.core.database
 {

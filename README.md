@@ -23,7 +23,15 @@ An application to maintain a database of media library, such as TV Shows or movi
 
 ## Requirements
 
+### SDK
+
 `.NET Core SDK 3.0 (or higher)`
+
+### The Movie Database API key
+
+`dotnet user-secrets set tmdb.apiKey YourApiKeyFromTMDB --project main/scrapper`
+
+### General
 
 All test file must be encoded in UTF-8 (without BOM), in Windows (CR LF) end of line convention.
 
@@ -34,10 +42,6 @@ All test file must be encoded in UTF-8 (without BOM), in Windows (CR LF) end of 
 ## Test
 
 `dotnet test`
-
-## Run
-
-`dotnet run -p main/console`
 
 ## Package
 

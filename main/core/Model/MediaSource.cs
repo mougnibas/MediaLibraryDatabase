@@ -17,8 +17,6 @@
 
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Globalization;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace fr.mougnibas.medialibrarydatabase.core.model
@@ -28,35 +26,24 @@ namespace fr.mougnibas.medialibrarydatabase.core.model
     /// </summary>
     public class MediaSource
     {
-
         /// <summary>
-        /// Media source name, also used to be the instance identifier.
+        /// Media source path, also used to be the instance identifier.
         /// </summary>
         [Key]
-        [Required]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Media source path.
-        /// </summary>
-		[Required]
         public string Path { get; set; }
 
         /// <summary>
         /// Media source type.
         /// </summary>
-        [Required]
         public SourceType Type { get; set; }
 
         /// <summary>
         /// Initialize a media source.
         /// </summary>
-        /// <param name="name">Media source name</param>
         /// <param name="path">Media source path</param>
         /// <param name="type">Media source type</param>
-        public MediaSource(string name, string path, SourceType type)
+        public MediaSource(string path, SourceType type)
         {
-            Name = name;
             Path = path;
             Type = type;
         }
@@ -68,7 +55,6 @@ namespace fr.mougnibas.medialibrarydatabase.core.model
         {
             return new StringBuilder()
                 .Append("MediaSource(")
-                .Append($"Name={Name}, ")
                 .Append($"Path={Path}, ")
                 .Append($"Type={Type}")
                 .Append(")")

@@ -16,7 +16,6 @@
 // along with MediaLibraryDatabase.  If not, see <https://www.gnu.org/licenses/>.
 
 using System;
-using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Security.Cryptography;
 using System.Text;
@@ -41,25 +40,21 @@ namespace fr.mougnibas.medialibrarydatabase.core.model
         /// <summary>
         /// Technical instance identifier.
         /// </summary>
-        [Required]
         public string Id { get; set; }
 
         /// <summary>
         /// Movie name.
         /// </summary>
-		[Required]
         public string Name { get; set; }
 
         /// <summary>
         /// Movie file path.
         /// </summary>
-		[Required]
         public string File { get; set; }
 
         /// <summary>
         /// Movie release date.
         /// </summary>
-		[Required]
         public DateTime Date { get; set; }
 
         /// <summary>

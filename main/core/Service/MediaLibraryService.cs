@@ -15,11 +15,11 @@
 // You should have received a copy of the GNU General Public License
 // along with MediaLibraryDatabase.  If not, see <https://www.gnu.org/licenses/>.
 
+using fr.mougnibas.medialibrarydatabase.core.database;
+using fr.mougnibas.medialibrarydatabase.core.model;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using fr.mougnibas.medialibrarydatabase.core.database;
-using fr.mougnibas.medialibrarydatabase.core.model;
 
 namespace fr.mougnibas.medialibrarydatabase.core.service
 {
@@ -83,7 +83,7 @@ namespace fr.mougnibas.medialibrarydatabase.core.service
         /// Try to find movies by name.
         /// </summary>
         /// <param name="name">Name of movies</param>
-        /// <returns>The movies foun (if any)d, ordered by name.</returns>
+        /// <returns>The movies found (if any), ordered by name.</returns>
         public Movie[] SearchMovies(string name)
         {
             return _context.Movies
@@ -110,18 +110,18 @@ namespace fr.mougnibas.medialibrarydatabase.core.service
         /// <returns>All media sources, ordered by name</returns>
         public MediaSource[] GetMediaSources()
         {
-            return _context.MediaSources.OrderBy(s => s.Name).ToArray();
+            return _context.MediaSources.OrderBy(s => s.Path).ToArray();
         }
 
         /// <summary>
         /// Get a media source.
         /// </summary>
-        /// <param name="name">Media source name</param>
+        /// <param name="path">Media source path</param>
         /// <returns>A media source, if any</returns>
-        public MediaSource GetMediaSource(string name)
+        public MediaSource GetMediaSource(string path)
         {
             return _context.MediaSources
-               .Where(m => m.Name.Equals(name))
+               .Where(m => m.Path.Equals(path))
                .FirstOrDefault();
         }
 
@@ -156,16 +156,20 @@ namespace fr.mougnibas.medialibrarydatabase.core.service
                 // If movie is not already in the database, add it
                 if (GetMovie(movieDirectoryName) == null)
                 {
+                    // TODO Use TMDB to grab movie release date
                     // Extract date from movie directory
-                    int startIndex = movieDirectoryName.IndexOf('(');
+                    // "+1" and "-2" are here to adjust " ", "(" and  ")" of "Name (date)"
+                    int startIndex = movieDirectoryName.IndexOf('(') + 1;
                     int endIndex = movieDirectoryName.IndexOf(')');
-                    string date = movieDirectoryName.Substring(startIndex, endIndex);
+                    int length = endIndex - startIndex;
+                    string date = movieDirectoryName.Substring(startIndex, length);
+                    string dateHack = date + "-01-01";
 
                     // Extract name from movie directory
-                    string name = movieDirectoryName.Substring(0, startIndex);
+                    string name = movieDirectoryName.Substring(0, startIndex - 2);
 
                     // Create the movie
-                    Movie movie = new Movie(name, mediaFile, date);
+                    Movie movie = new Movie(name, mediaFile, dateHack);
 
                     // Add it to the database
                     Add(movie);
