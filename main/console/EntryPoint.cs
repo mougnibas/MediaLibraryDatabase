@@ -20,6 +20,7 @@ using fr.mougnibas.medialibrarydatabase.core.service;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using CommandLine;
 
 namespace fr.mougnibas.medialibrarydatabase.console
 {
@@ -32,6 +33,11 @@ namespace fr.mougnibas.medialibrarydatabase.console
         /// Class logger.
         /// </summary>
         private static readonly ILogger LOG;
+
+        /// <summary>
+        /// "OK" return code (0).
+        /// </summary>
+        private static readonly int RETURN_CODE_OK = 0;
 
         /// <summary>
         /// Configure logging.
@@ -60,11 +66,56 @@ namespace fr.mougnibas.medialibrarydatabase.console
         /// <param name="args"></param>
         public static void Main(string[] args)
         {
-            // Print License
+            Parser.Default.ParseArguments<CommonOptions, InitOptions>(args)
+                .MapResult(
+
+                (CommonOptions options) => RunAndReturnExitCode(options),
+                (InitOptions options) => RunInitAndReturnExitCode(options),
+
+                errs => 1
+                );
+        }
+
+        /// <summary>
+        /// Print the license, eventually the verbose mode if enabled, then return "0" code.
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        private static int RunAndReturnExitCode(CommonOptions options)
+        {
+            // Print the license
             PrintLicense();
 
-            // Parse arguments
-            ParseArgs(args);
+            // If verbose mode is enabled, notify the user
+            if (options.Verbose)
+            {
+                LOG.LogTrace("Verbose mode enabled");
+            }
+
+            // Gracefuly return
+            return RETURN_CODE_OK;
+        }
+
+        /// <summary>
+        /// Print the license, first initialization of the database, then return "0" code.
+        /// </summary>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        private static int RunInitAndReturnExitCode(InitOptions options)
+        {
+            // Print the license
+            PrintLicense();
+
+            // Init the database
+            var service = new MediaLibraryService();
+            foreach (string moviePath in options.MoviesPath)
+            {
+                service.Add(new MediaSource(moviePath, MediaSource.SourceType.MOVIE));
+            }
+            // TODO Restart here
+
+            // Gracefuly return
+            return RETURN_CODE_OK;
         }
 
         /// <summary>
@@ -88,96 +139,6 @@ namespace fr.mougnibas.medialibrarydatabase.console
             Console.WriteLine("along with MediaLibraryDatabase.  If not, see <https://www.gnu.org/licenses/>.");
             Console.WriteLine();
             Console.WriteLine();
-        }
-
-        /// <summary>
-        /// Parse entry point arguments.
-        /// </summary>
-        /// <param name="args">Entry point arguments</param>
-        private static void ParseArgs(string[] args)
-        {
-            // Put args in a list
-            var argsList = new List<string>(args);
-
-            // no args ? Print help
-            if (argsList.Count == 0)
-            {
-                PrintHelp();
-            }
-            // --help ?
-            else if (argsList.Count == 1 && argsList.Contains("--help"))
-            {
-                PrintHelp();
-            }
-            // init ? Print init help
-            else if (argsList.Count == 1 && argsList.Contains("init"))
-            {
-                PrintHelpInit();
-            }
-            // init --help ? Print init help
-            else if (argsList.Count == 2 && argsList.Contains("init") && argsList.Contains("--help"))
-            {
-                PrintHelpInit();
-            }
-            // init with unparsed arg ? Print unparsed Arg and print init help
-            else if (argsList.Count != 2 && argsList.Contains("init"))
-            {
-                PrintUnparsedArg();
-                PrintHelpInit();
-            }
-            // init --movies /path/to/sources:/path/to/other/sources ? Do the stuff
-            else if (argsList.Count == 3 && argsList.Contains("init"))
-            {
-                string moviesPath = argsList[2];
-                string[] moviesPaths = moviesPath.Split(":");
-                Init(moviesPaths);
-            }
-            // Unparsed arg ? Print a warning and print help
-            else
-            {
-                PrintUnparsedArg();
-                PrintHelp();
-            }
-        }
-
-        /// <summary>
-        /// Print help message.
-        /// </summary>
-        private static void PrintHelp()
-        {
-            Console.WriteLine("Usage : console [init|scan] [--help]");
-        }
-
-        /// <summary>
-        /// Print an help message about "init" verb.
-        /// </summary>
-        private static void PrintHelpInit()
-        {
-            Console.WriteLine("Usage : console init --movies=pathToMoviesDirectory[:pathToAnotherMoviesDirectory] [--help]");
-        }
-
-        /// <summary>
-        /// Print an unparsed argument message;
-        /// </summary>
-        private static void PrintUnparsedArg()
-        {
-            Console.WriteLine("Error : Unparsed argument");
-        }
-
-        /// <summary>
-        /// First initialize of the database.
-        /// </summary>
-        /// <param name="moviesPaths">Movies paths</param>
-        private static void Init(string[] moviesPaths)
-        {
-
-            var service = new MediaLibraryService();
-            foreach (string moviePath in moviesPaths)
-            {
-                service.Add(new MediaSource(moviePath, MediaSource.SourceType.MOVIE));
-            }
-            
-            // TODO Restart here
         }
     }
 }
