@@ -9,7 +9,10 @@ namespace fr.mougnibas.medialibrarydatabase.console
     [Verb("init", HelpText = "Initialize the database")]
     public class InitOptions
     {
-        [Option(HelpText = "Path to movie(s) directory(ies)")]
+        /// <summary>
+        /// Movies path.
+        /// </summary>
+        [Option(Required =true, HelpText = "Path to movie(s) directory(ies)")]
         public List<string> MoviesPath { get; set; }
     }
 }

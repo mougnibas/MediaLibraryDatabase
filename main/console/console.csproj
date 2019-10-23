@@ -27,12 +27,29 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="..\..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.0</TargetFramework>
     <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
     <PublishSingleFile>true</PublishSingleFile>
     <PublishTrimmed>true</PublishTrimmed>
+    <PackageId>fr.mougnibas.medialibrarydatabase.console</PackageId>
+    <Authors>Yoann MOUGNIBAS</Authors>
+    <Company></Company>
+    <Product>MediaLibraryDatabaseConsole</Product>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/mougnibas/MediaLibraryDatabase</PackageProjectUrl>
+    <Description>An application to maintain a database of media library, such as TV Shows or movies.</Description>
+    <RepositoryUrl>https://github.com/mougnibas/MediaLibraryDatabase.git</RepositoryUrl>
+    <AssemblyName>MediaLibraryDatabaseConsole</AssemblyName>
+    <RootNamespace>fr.mougnibas.medialibrarydatabase.console</RootNamespace>
   </PropertyGroup>
 
 </Project>
